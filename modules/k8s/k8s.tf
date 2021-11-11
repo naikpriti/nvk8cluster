@@ -1,5 +1,4 @@
 provider "kubernetes" {
-#    load_config_file       = "false"
     host                   =  var.host
     client_certificate     =  var.client_certificate
     client_key             =  var.client_key
@@ -46,21 +45,7 @@ resource "kubernetes_deployment" "example" {
               memory = "50Mi"
             }
           }
-
-          liveness_probe {
-            http_get {
-              path = "/nginx_status"
-              port = 80
-
-              http_header {
-                name  = "X-Custom-Header"
-                value = "Awesome"
-              }
-            }
-
-            initial_delay_seconds = 3
-            period_seconds        = 3
-          }
+         }
         }
       }
     }
