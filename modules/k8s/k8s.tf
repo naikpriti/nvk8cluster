@@ -112,8 +112,8 @@ resource "kubernetes_deployment" "example1" {
         container {
           image = "paulbouwer/hello-kubernetes:1.8"
           name  = "example1"
-          ports =
-          - containerPort = 8080
+          port = 8080
+          
         }
       }
     }
