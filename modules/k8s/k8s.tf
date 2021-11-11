@@ -84,55 +84,5 @@ resource "kubernetes_service" "example" {
   }
 }
 
-resource "kubernetes_deployment" "example1" {
-  metadata {
-    name = "terraform-example1"
-    labels = {
-      test = "MyExampleApp1"
-    }
-  }
 
-  spec {
-    replicas = 1
 
-    selector {
-      match_labels = {
-        test = "MyExampleApp1"
-      }
-    }
-
-    template {
-      metadata {
-        labels = {
-          test = "MyExampleApp1"
-        }
-      }
-
-      spec {
-        container {
-          image = "paulbouwer/hello-kubernetes:1.8"
-          name  = "example1"
-          port = 8080
-          
-        }
-      }
-    }
-  }
-
-resource "kubernetes_service" "example" {
-  metadata {
-    name = "svc-example1"
-  }
-  spec {
-    selector = {
-      test = "MyExampleApp1"
-    }
-    port {
-      port        = 80
-      target_port = 8080
-    }
-
-    type = "LoadBalancer"
-  }
-}
- 
