@@ -1,8 +1,3 @@
-#resource "azurerm_resource_group" "aks-getting-started" {
-#  name     = "aks-getting-started"
-#  location = var.location
-#}
-
 resource "azurerm_kubernetes_cluster" "aks-getting-started" {
   name                  = "tstk8cluster"
   location              = "eastus"
@@ -23,26 +18,15 @@ resource "azurerm_kubernetes_cluster" "aks-getting-started" {
     client_secret = var.serviceprinciple_key
   }
 
-  #linux_profile {
-  #  admin_username = "azureuser"
-  #  ssh_key {
-  #      key_data = var.ssh_key
-  # }
-  #}
-
   network_profile {
       network_plugin = "kubenet"
       load_balancer_sku = "Standard"
   }
-
-  addon_profile {
-    http_application_routing {
-      enabled = true
-    }
+}
+  
 
     
-    }
-  }
+  
 
 
 
